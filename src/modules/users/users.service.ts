@@ -1,10 +1,7 @@
 import { HttpException, HttpStatus, Injectable, InternalServerErrorException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { getConnection } from 'typeorm';
 import User from '../../entities/user/user.entity';
 import CreateUserDto from './dto/createUser.dto';
-import * as bcrypt from 'bcrypt';
-import { UpdateUserDto } from './dto/updateUser.dto';
 
 @Injectable()
 export class UsersService {
@@ -51,10 +48,10 @@ export class UsersService {
     return await this.getByEmail(user.email)
   }
   
-  async update(newUser: User) {
-    let user = await this.getById(newUser.id);
-    user.email = newUser.email;
-    user.name = newUser.name;
+  async update(newUser: User, id: number) {
+    let user = await this.getById(id);
+    user.email = newUser.email ? newUser.email : user.email;
+    user.name = newUser.name ? newUser.name : user.name;
     return await getConnection("POSTGRES").manager.save(user);
   }
 }

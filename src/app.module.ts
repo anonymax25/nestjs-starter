@@ -21,17 +21,11 @@ import * as Joi from '@hapi/joi'
 
 
 const {
-  ENV,
-  PORT,
   POSTGRES_HOST,
   POSTGRES_PORT,
   POSTGRES_USER,
   POSTGRES_PASSWORD,
   POSTGRES_DB,
-  JWT_ACCESS_TOKEN_SECRET,
-  JWT_ACCESS_TOKEN_EXPIRATION_TIME,
-  JWT_REFRESH_TOKEN_SECRET,
-  JWT_REFRESH_TOKEN_EXPIRATION_TIME,
 } = process.env
 
 const POSTGRES_DB_CONFIG: ConnectionOptions = {
@@ -55,15 +49,4 @@ const POSTGRES_DB_CONFIG: ConnectionOptions = {
   controllers: [],
   providers: [],
 })
-export class AppModule {
-
-  configure(consumer: MiddlewareConsumer): void {
-    // consumer
-    //   .apply(JWTAuthMiddleware)
-    //   .exclude('/auth*')
-    //   .exclude('/user*')
-    //   .forRoutes('/**');
-    //consumer.apply(BindRolesFuncsMiddleware).forRoutes('/**');
-
-  }
- }
+export class AppModule {}

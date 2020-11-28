@@ -19,9 +19,7 @@ import { JwtService } from '@nestjs/jwt';
 @UseInterceptors(ClassSerializerInterceptor)
 export class AuthenticationController {
   constructor(
-    private readonly authenticationService: AuthenticationService,
-    private readonly usersService: UsersService,
-    private readonly jwtService: JwtService
+    private readonly authenticationService: AuthenticationService
 
   ) {}
 
